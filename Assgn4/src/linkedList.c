@@ -37,7 +37,9 @@ linkedList * removeFromList(linkedList*head, sockets data) {
 		head = temp;
 	} else {
 		temp = head->next;
+
 		prev=head;
+		prev = head;
 		while (temp != NULL ) {
 			if (temp->data.schedulerSocket == data.schedulerSocket) {
 				break;
@@ -45,7 +47,7 @@ linkedList * removeFromList(linkedList*head, sockets data) {
 			prev = temp;
 			temp = temp->next;
 		}
-		if (temp != NULL &&prev!=NULL) {
+		if (temp != NULL && prev != NULL) {
 			prev->next = temp->next;
 			free(temp);
 		}
@@ -53,6 +55,7 @@ linkedList * removeFromList(linkedList*head, sockets data) {
 	}
 	return head;
 }
+
 int contains(linkedList * head, sockets data) {
 	linkedList*temp = NULL;
 
