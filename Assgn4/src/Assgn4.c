@@ -41,11 +41,11 @@ int main() {
 	Listen(schedulerfd, 10);
 	pthread_create(&schedulerThread, 0, (void*) &schedule, NULL);
 	int i = 0;
-	while (i < 100) {
+	while (1) {
 		incClient();
 		newsockfd = Accept(sockfd);
 
-		if (numClient() <= 100) {
+		//if (numClient() <= 100) {
 			Send(newsockfd, "ACCEPT", strlen("ACCEPT") + 1);
 			newschedule = Accept(schedulerfd);
 			fprintf(stderr, "Connection established with scheduler");
@@ -64,10 +64,10 @@ int main() {
 			epollAdd(epfd, newschedule);
 			int ret = threadpool_add_task(pool, negotiator, (void*) &newsockfd,
 					1);
-		} else {
-			Send(newsockfd, "REJECT", strlen("REJECT") + 1);
-			close(newsockfd);
-		}
+		//} else {
+		//	Send(newsockfd, "REJECT", strlen("REJECT") + 1);
+		//	close(newsockfd);
+		//}
 
 		i++;
 
