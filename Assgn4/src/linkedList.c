@@ -1,8 +1,8 @@
 /*
  * linkedList.c
  *
- *  Created on: Nov 27, 2012
- *      Author: sameer
+ *
+ *
  */
 #include "linkedList.h"
 #include<stdlib.h>
@@ -37,6 +37,8 @@ linkedList * removeFromList(linkedList*head, sockets data) {
 		head = temp;
 	} else {
 		temp = head->next;
+
+		prev=head;
 		prev = head;
 		while (temp != NULL ) {
 			if (temp->data.schedulerSocket == data.schedulerSocket) {
