@@ -32,7 +32,7 @@ void negotiator(void * ptr) {
 		//pthread_mutex_unlock(&mutex);
 		sprintf(buff, "%d", size);
 		fprintf(stderr, "%d", size);
-		if (doSend(panning)) {
+		if (doSend(panning) == 1) {
 			Send(newsockfd, buff, strlen(buff));
 			char* s = (char*) malloc(size * sizeof(char) + 1);
 			//pthread_mutex_lock(&mutex);
@@ -51,13 +51,25 @@ void negotiator(void * ptr) {
 			free(s);
 			panning = panList->data.priority;
 		}
+		//send the file length as 0
+		else{
+			sprintf(buff, "%d", 0);
+			Send(newsockfd, buff, strlen(buff));
+			panning = panList->data.priority;
+		}
 	}
 	Close(newsockfd);
 }
 
+//decide using the panning speed whether to send or not
 int doSend(int panning) {
-	return 1;
+	srand(time(NULL));
+	if(rand() % panning == 0)
+		return 1;
+	else
+		return 0;
 }
+
 void incClient() {
 	pthread_mutex_lock(&mutex);
 	count++;

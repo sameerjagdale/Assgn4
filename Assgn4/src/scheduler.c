@@ -29,8 +29,10 @@ void schedule(void *param) {
 			Receive(fd, buff, sizeof(int) + 1);
 			linkedList *temp = searchScheduler(socketList, fd);
 			if (atoi(buff) >= 0 && temp != NULL ) {
-				temp->data.priority = ((float) 1 / (atoi(buff) + 1)) * 1000;
-			} else {
+				temp->data.priority = ((float) (atoi(buff) + 1)) * 1000;
+			}
+			//if the listener is closing, it sends -1 as the panning speed
+			else {
 				close(fd);
 				if (temp != NULL ) {
 					socketList = removeFromList(socketList, temp->data);
@@ -39,4 +41,3 @@ void schedule(void *param) {
 		}
 	}
 }
-
