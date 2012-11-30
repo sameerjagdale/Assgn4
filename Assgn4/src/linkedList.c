@@ -1,8 +1,8 @@
 /*
  * linkedList.c
  *
- *  Created on: Nov 27, 2012
- *      Author: sameer
+ *
+ *
  */
 #include "linkedList.h"
 #include<stdlib.h>
