@@ -65,7 +65,6 @@ void negotiator(void * ptr) {
 		else {
 			sprintf(buff, "%d", -1);
 			Send(newsockfd, buff, strlen(buff));
-			fprintf(stderr, "panning speed=%d", panning);
 			panning = panList->data.priority;
 
 		}

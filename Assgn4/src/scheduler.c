@@ -30,7 +30,7 @@ void schedule(void *param) {
 			linkedList *temp = searchScheduler(socketList, fd);
 			if (atoi(buff) >= 0 && temp != NULL ) {
 				temp->data.priority = ((float) (atoi(buff) + 1)) * 1000;
-				//fprintf(stderr,"panning speed in scheduler = %d",temp->data.priority);
+
 			}
 			//if the listener is closing, it sends -1 as the panning speed
 			else {
